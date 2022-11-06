@@ -1,18 +1,20 @@
-└── infra_actions
-     ├── .git/ 
-     ├── .github/
-     |   ├── workflows/ <-- Директория workflow
-     |          └── main.yml <-- Файл с инструкциями
-     ├── .vscode/ 
-     ├── infra_project  
-     |   ├── manage.py
-     |   ├── infra_app/ 
-     |      └── infra_project
-     |       ├── __init__.py
-     |       ├── settings.py
-     |       ├── urls.py
-     |       └── wsgi.py
-     ├── venv/ 
-     ├── Dockerfile
-     ├── README.md  
-     └── .gitignore
+name: CI
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on:
+     push:
+          branches: [master]
+     pull_request:
+          branches: [master]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Run a one-line script
+        run: echo Hello, worls!
+        
+      - name: Run a multi-line script
+        run: |
+          echo WTF?!
+          echo echo "🍏 This job's status is ${{ job.status }}."
